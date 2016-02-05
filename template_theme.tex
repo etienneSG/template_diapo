@@ -1,0 +1,198 @@
+% Template for LaTeX slides
+% Provide by E. de Saint Germain
+% Last version: January, 2016
+
+% Logo
+\newcommand{\mylogo}{images/logo_argon_gray.png}
+\newcommand{\coverlogo}{images/logo_argon_white.png}
+
+% Second logo / Client Logo
+\newcommand{\clientlogo}{images/logo-cermics.png}
+
+% Margin
+\newcommand{\xlmargin}{0.02\paperwidth}  % Left margin
+\newcommand{\xrmargin}{0.98\paperwidth}  % Right margin
+
+\newcommand{\headerheight}{0.95cm} % Header height
+\newcommand{\footerheight}{0.7cm}  % Footer height
+
+% Color theme
+\newcommand{\maincolor}{argon orange} % Main color
+\newcommand{\secondcolor}{argon gray} % Secundary color
+
+% Format of classical slides
+\newenvironment{myframe}{\begin{frame}[plain]\startmyframe}{\stopmyframe\end{frame}}
+
+\newcommand\startmyframe{
+  \begin{centering}
+    \begin{tikzpicture}
+
+      % Windows
+      \clip (0,0) rectangle (\paperwidth,\paperheight);
+
+      % Current coordinate
+      \coordinate (current) at (\xlmargin ,{\paperheight-\headerheight});
+
+      % Name of the section
+      \node[anchor = west, color = \maincolor] (sectionname) at (\xlmargin, {\paperheight-.25*\headerheight}) {\textbf{\insertsection}};
+
+      % Name of the subsection
+      \node[anchor = west, color = \secondcolor!60] (subsectionname) at (\xlmargin, {\paperheight-.7*\headerheight}) {\textbf{\insertsubsection}};
+
+      % Rectangle on the right
+      \draw[color=\secondcolor, fill=\secondcolor] ({\paperwidth-.2cm},\paperheight) rectangle (\paperwidth,{\paperheight-\headerheight});
+      \draw[color=\maincolor, fill=\maincolor] ({\paperwidth-.2cm},{\paperheight-\headerheight}) rectangle (\paperwidth,\footerheight);
+
+      % Separator from the body of the slide
+      \draw[color=\maincolor] (0,{\paperheight-\headerheight}) -- (\paperwidth,{\paperheight-\headerheight});
+
+      % Line to help construction. Remove in final version.
+      %\myhelplines
+}
+
+\newcommand\stopmyframe{
+      % Separator from the body of the slide
+      \draw[color=\secondcolor] (0,\footerheight) -- (\paperwidth,\footerheight);
+
+      % Logos
+      \node[anchor = west]  at (\xlmargin,{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.25cm}]{\mylogo}};
+      \node[anchor = east]  at ({\paperwidth-1cm},{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.25cm}]{\clientlogo}};
+
+      % Numbering pages
+      \node[anchor = south east] at (\paperwidth,0) {\footnotesize \insertframenumber{} / \inserttotalframenumber};
+
+      \draw[color=\maincolor, fill=\maincolor] (0,0) rectangle (\paperwidth,.1cm);
+
+    \end{tikzpicture}
+  \end{centering}
+
+}
+
+
+% Cover frame
+% #1 title
+% #2 subtitle
+% #3 date
+% #4 authors
+\newcommand{\covermargin}{2cm}
+\newcommand{\coverframe}[4]{
+  \begin{frame}[plain]
+    \begin{centering}
+      \begin{tikzpicture}
+
+        % Windows
+        \clip (0,0) rectangle (\paperwidth,\paperheight);
+
+        % Rectangles on the top
+        \shade[left color=\secondcolor!90, right color=black!80] (0,\paperheight) rectangle (\paperwidth,{\paperheight-2.4cm});
+        \draw[color=\maincolor, fill=\maincolor] (0,{\paperheight-2.4cm}) rectangle (\paperwidth,{\paperheight-2.9cm});
+
+        % Logo
+        \node[anchor = south east]  at ({\paperwidth-.9cm},{\paperheight-2.35cm}) {\includegraphics[height=0.5cm]{\coverlogo}};
+        % Site web
+        \node[anchor = east, color=white] (website) at ({\paperwidth-.9cm},{\paperheight-2.65cm}) {\footnotesize www.argon-consult.com};
+
+        % Subtitle
+        \node[anchor = west, color=\maincolor] (subtitle) at (\covermargin,{.35*\paperheight}) {\textbf{#2}};
+        % Title
+        \node[anchor = south west, color=black] (title) at ($(subtitle.north west) + (0,.1cm)$) {\Large \textbf{#1}};
+        %  Client logo / second logo
+        \node[anchor = south west]  (client logo) at ($(title.north west) + (0,.1cm)$) {\includegraphics[height=0.8cm]{\clientlogo}};
+        % Date
+        \node[anchor = north west, color=\secondcolor!60] (date) at ($(subtitle.south west) - (0,.1cm)$) {\textbf{#3}};
+        % Authors
+        \node[anchor = south, color=\secondcolor!60] (authors) at ({.5*\paperwidth},.5cm) {\textbf{#4}};
+
+        % Rectangle at the bottom
+        \draw[color=\maincolor, fill=\maincolor] (0,0) rectangle (\paperwidth,.1cm);
+
+      \end{tikzpicture}
+    \end{centering}
+  \end{frame}
+}
+
+
+
+% Line to help construction. Remove in final version.
+\newcommand\myhelplines{    
+  \draw[help lines] (0,0) grid (\paperwidth, \paperheight); 
+  \foreach \x in {1,...,12} { \node [anchor=south west, color=gray] at (\x,0) {\x}; }
+  \foreach \y in {1,...,10} { \node [anchor=south west, color=gray] at (0,\y) {\y}; }
+}
+
+
+
+% Box to place latex frames
+% #1 position, current by default
+% #2 width
+% #3 tikz options
+% #4 text
+\newcommand{\mytext}[4][current]{
+  \node[anchor = north west, #3] (box) at (#1) {
+    \begin{minipage}{#2}
+      #4
+    \end{minipage}
+  };
+  \coordinate (current) at (box.south west);
+}
+
+
+% Table of content style
+\defbeamertemplate{section in toc}{toc style}{%
+  \leavevmode\leftskip=0.4cm%
+  \llap{\textcolor{\maincolor}{$\bullet$}}%
+  \kern1.5ex\textcolor{\secondcolor}{\inserttocsection}\par
+}
+\setbeamertemplate{section in toc}[toc style]
+
+% Pop up the table of contents at the beginning of each section:
+\AtBeginSection[]
+{
+  \begin{frame}[plain]
+    \begin{centering}
+      \begin{tikzpicture}
+
+        % Windows
+        \clip (0,0) rectangle (\paperwidth,\paperheight);
+
+        % Headers
+        \node[anchor = west, color = \maincolor] (outline) at (\xlmargin, {\paperheight-.5*\headerheight}) {\textbf{\iflanguage{english}{Outline}{\iflanguage{french}{Sommaire}}}};
+
+        % Separator from the table of content
+        \draw[color=\maincolor] (0,{\paperheight-\headerheight}) -- (\paperwidth,{\paperheight-\headerheight});
+
+        % Table of contents
+        \mytext[\xlmargin,{\paperheight-2*\headerheight}]{.5\paperwidth}{anchor = north west, inner sep = 2pt
+        }{
+          \addtocounter{framenumber}{-1}
+          \setcounter{tocdepth}{1}
+          \renewcommand{\baselinestretch}{1.75}\normalsize
+          \tableofcontents
+          \renewcommand{\baselinestretch}{1.}\normalsize
+        }
+
+        % Separator from the body of the slide
+        \draw[color=\secondcolor] (0,\footerheight) -- (\paperwidth,\footerheight);
+
+        % Logo
+        \node[anchor = west]  at (\xlmargin,{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.25cm}]{\mylogo}};
+        \node[anchor = east]  at ({\paperwidth-1cm},{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.25cm}]{\clientlogo}};
+
+        % Rectangle at the bottom
+        \draw[color=\maincolor, fill=\maincolor] (0,0) rectangle (\paperwidth,.1cm);
+
+      \end{tikzpicture}
+    \end{centering}
+  \end{frame}
+}
+
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "master"
+%%% TeX-PDF-mode: t
+%%% save-place: t
+%%% End:

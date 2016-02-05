@@ -1,0 +1,40 @@
+%% LaTeX Beamer presentation template (requires beamer package)
+%% see http://bitbucket.org/rivanvx/beamer/wiki/Home
+%% idea contributed by H. Turgut Uyar
+%% template based on a template by Till Tantau
+%% this template is still evolving - it might differ in future releases!
+
+
+\documentclass{diapo}
+
+\graphicspath{{images/}}
+
+\colorlet{myblue}{rgb:red,0;green,102;blue,102}
+\colorlet{mygreen}{rgb:red,10;green,50;blue,10}
+\colorlet{purple}{rgb:red,50;green,0;blue,50}
+\colorlet{kaki}{rgb:red,50;green,50;blue,0}
+
+\setbeamersize{text margin left = 0pt}
+\setbeamersize{text margin right = 0pt}
+
+
+\begin{document}
+
+\coverframe{Le titre de la présentation}{Ayant un sous-titre}{\today}{Prénom Nom}
+
+\section{Section 1} 
+
+\subsection{Subsection 1}
+
+\begin{myframe}
+
+  \mytext[\xlmargin,8.25]{0.93\paperwidth}{anchor = north west,
+    inner sep = 2pt
+  }{
+    test corps 1
+  }
+
+\end{myframe}
+
+
+\end{document}
