@@ -9,6 +9,9 @@
 % Second logo / Client Logo
 \newcommand{\clientlogo}{images/logo-cermics.png}
 
+% Image themme
+\newcommand{\imagetheme}{images/Argon_theme.jpg}
+
 % Margin
 \newcommand{\xlmargin}{0.02\paperwidth}  % Left margin
 \newcommand{\xrmargin}{0.98\paperwidth}  % Right margin
@@ -175,12 +178,17 @@
         % Separator from the body of the slide
         \draw[color=\secondcolor] (0,\footerheight) -- (\paperwidth,\footerheight);
 
+
         % Logo
-        \node[anchor = west]  at (\xlmargin,{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.25cm}]{\mylogo}};
-        \node[anchor = east]  at ({\paperwidth-1cm},{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.25cm}]{\clientlogo}};
+        \node[anchor = west] at (\xlmargin,{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.25cm}]{\mylogo}};
 
         % Rectangle at the bottom
         \draw[color=\maincolor, fill=\maincolor] (0,0) rectangle (\paperwidth,.1cm);
+
+        % Vertical rectangle
+        \draw[color=\maincolor, fill=\maincolor] (.55*\paperwidth,0) rectangle (.57*\paperwidth,\paperheight);
+        % Image of the theme
+        \node[anchor = west] at (.56*\paperwidth,.5*\paperheight) {\includegraphics[height=\paperheight]{\imagetheme}};
 
       \end{tikzpicture}
     \end{centering}
