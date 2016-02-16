@@ -9,11 +9,6 @@
 
 \graphicspath{{images/}}
 
-\colorlet{myblue}{rgb:red,0;green,102;blue,102}
-\colorlet{mygreen}{rgb:red,10;green,50;blue,10}
-\colorlet{purple}{rgb:red,50;green,0;blue,50}
-\colorlet{kaki}{rgb:red,50;green,50;blue,0}
-
 \setbeamersize{text margin left = 0pt}
 \setbeamersize{text margin right = 0pt}
 
@@ -31,7 +26,16 @@
   \mytext[\xlmargin,8.25]{0.93\paperwidth}{anchor = north west,
     inner sep = 2pt
   }{
-    test corps 1
+    this is a list
+    \begin{itemize}
+    \item first element
+      \begin{itemize}
+      \item something
+      \item something else
+      \end{itemize}
+    \item second element
+    \item last item
+    \end{itemize}
   }
 
 \end{myframe}

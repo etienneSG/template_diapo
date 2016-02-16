@@ -31,7 +31,7 @@
       \clip (0,0) rectangle (\paperwidth,\paperheight);
 
       % Current coordinate
-      \coordinate (current) at (\xlmargin ,{\paperheight-\headerheight});
+      \coordinate (current) at (\xlmargin ,8.25cm);
 
       % Name of the section
       \node[anchor = west, color = \maincolor] (sectionname) at (\xlmargin, {\paperheight-.25*\headerheight}) {\textbf{\insertsection}};
@@ -75,6 +75,7 @@
 % #3 date
 % #4 authors
 \newcommand{\covermargin}{2cm}
+\newcommand{\coverwidth}{.75\paperwidth}
 \newcommand{\coverframe}[4]{
   \begin{frame}[plain]
     \begin{centering}
@@ -93,13 +94,13 @@
         \node[anchor = east, color=white] (website) at ({\paperwidth-.9cm},{\paperheight-2.65cm}) {\footnotesize www.argon-consult.com};
 
         % Subtitle
-        \node[anchor = west, color=\maincolor] (subtitle) at (\covermargin,{.35*\paperheight}) {\textbf{#2}};
+        \node[anchor = west, color=\maincolor] (subtitle) at (\covermargin,{.35*\paperheight}) { \begin{minipage}{\coverwidth}\small \textbf{#2}\end{minipage} };
         % Title
-        \node[anchor = south west, color=black] (title) at ($(subtitle.north west) + (0,.1cm)$) {\Large \textbf{#1}};
-        %  Client logo / second logo
-        \node[anchor = south west]  (client logo) at ($(title.north west) + (0,.1cm)$) {\includegraphics[height=0.8cm]{\clientlogo}};
+        \node[anchor = south west, color=black] (title) at ($(subtitle.north west) + (0,.1cm)$) { \begin{minipage}{\coverwidth}\textbf{#1}\end{minipage} };
+        % Client logo / second logo
+        %\node[anchor = south west]  (client logo) at ($(title.north west) + (0,.1cm)$) {\includegraphics[height=0.8cm]{\clientlogo}};
         % Date
-        \node[anchor = north west, color=\secondcolor!60] (date) at ($(subtitle.south west) - (0,.1cm)$) {\textbf{#3}};
+        \node[anchor = north west, color=\secondcolor!60] (date) at ($(subtitle.south west) - (0,.1cm)$) { \begin{minipage}{\coverwidth}\small \textbf{#3}\end{minipage} };
         % Authors
         \node[anchor = south, color=\secondcolor!60] (authors) at ({.5*\paperwidth},.5cm) {\textbf{#4}};
 
@@ -188,6 +189,10 @@
 
 % Remove navigation symbols
 \setbeamertemplate{navigation symbols}{}
+
+% Define default itemization
+\setbeamertemplate{itemize item}{\textcolor{\maincolor}{$\bullet$}}
+\setbeamertemplate{itemize subitem}{\textcolor{\secondcolor!60}{$\bullet$}}
 
 
 %%% Local Variables:

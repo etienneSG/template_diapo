@@ -1,12 +1,9 @@
-%Classe réalisée par AT016
-
-%Dans le cas de vielles implémentation, permet de charger plus de package
-%\usepackage{etex}
-%\reserveinserts{28}
-
 %On définit une nouvelle classe définie à partir de book
 \ProvidesClass{diapo}
 \LoadClassWithOptions{beamer}
+
+\setbeamersize{text margin left = 0pt}
+\setbeamersize{text margin right = 0pt}
 
 %La base (mettre english si rapport de stage en anglais)
 \usepackage[utf8]{inputenc}
@@ -27,9 +24,9 @@
 
 %Pour pouvoir modifier les énumérations
 \frenchbsetup{StandardLists=true}
-\usepackage{enumitem}
+%\usepackage{enumitem}
 \usepackage[ampersand]{easylist}
-\setlist[]{leftmargin=*}
+%\setlist[]{leftmargin=*}
 
 %Pour souligner sur plusieurs lignes
 \usepackage{ulem}
@@ -91,6 +88,8 @@
 \usetikzlibrary{decorations,decorations.pathreplacing}
 \usetikzlibrary{patterns}
 
+% Symbole euro
+\usepackage{eurosym}
 
 % Template beamer
 \input{template_theme.tex}
