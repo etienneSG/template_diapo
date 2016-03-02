@@ -106,11 +106,14 @@
 
 \newcommand{\comp}{\compo}                                  % Compatibilit\'{e} ant\'{e}rieure
 
-%%%%% Parenth\`{e}ses, crochets et accolades
+%%%%% Parenth\`{e}ses, crochets et accolades de taille variable
 
 \newcommand{\bracket}[1]{\left(#1\right)}                   % Parenth\`{e}se
 \newcommand{\sqbracket}[1]{\left[#1\right]}                 % Crochet normal
-\newcommand{\crbracket}[1]{\left\{#1\right\}}                   % Accolade normal
+\newcommand{\crbracket}[1]{\left\{#1\right\}}               % Accolade normale
+
+%%%%% Intervale d'entiers
+\newcommand{\range}[2][1]{\left\{#1,\ldots,#2\right\}}
 
 %%%%% Parenth\`{e}ses, crochets et accolades taille fixe
 
@@ -190,7 +193,7 @@
 
 \makeatletter
 \def\va@a{\boldsymbol{\va@arg^{\textstyle\text{\unboldmath$\scriptstyle\va@expo$}}_{\textstyle\text{\unboldmath$\scriptstyle\va@index$}}}}
-\def\va#1{\def\va@expo{}\def\va@index{}\def\va@arg{\uppercase{#1}}%
+\def\va#1{\def\va@expo{}\def\va@index{}\def\va@arg{#1}%
   \@ifnextchar^{\va@h}{\@ifnextchar_\va@u\va@a}}
 \def\va@h^#1{\def\va@expo{#1}\@ifnextchar_\va@hu\va@a}
 \def\va@u_#1{\def\va@index{#1}\@ifnextchar^\va@uh\va@a}
