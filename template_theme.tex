@@ -7,7 +7,7 @@
 \newcommand{\coverlogo}{images/logo_argon_white.png}
 
 % Second logo / Client Logo
-\newcommand{\clientlogo}{images/logo-cermics.png}
+\newcommand{\clientlogo}{images/logo_ponts.png}
 
 % Image themme
 \newcommand{\imagetheme}{images/Argon_theme.jpg}
@@ -59,10 +59,10 @@
 
       % Logos
       \node[anchor = west]  at (\xlmargin,{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.25cm}]{\mylogo}};
-      \node[anchor = east]  at ({\paperwidth-1cm},{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.25cm}]{\clientlogo}};
+      \node[anchor = east]  at ({\xrmargin},{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.20cm}]{\clientlogo}};
 
       % Numbering pages
-      \node[anchor = south east] at (\paperwidth,0) {\footnotesize \insertframenumber{} / \inserttotalframenumber};
+      \node[anchor = south] at (.5*\paperwidth,0) {\footnotesize \insertframenumber{} / \inserttotalframenumber};
 
       \draw[color=\maincolor, fill=\maincolor] (0,0) rectangle (\paperwidth,.1cm);
 
@@ -200,7 +200,7 @@
 
 % Define default itemization
 \setbeamertemplate{itemize item}{\textcolor{\maincolor}{$\bullet$}}
-\setbeamertemplate{itemize subitem}{\textcolor{\secondcolor!60}{$\bullet$}}
+\setbeamertemplate{itemize subitem}{\textcolor{\secondcolor!60}{{\scriptsize$\blacktriangleright$}}}
 
 
 %%% Local Variables:
