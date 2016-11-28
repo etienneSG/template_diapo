@@ -24,9 +24,9 @@
 \newcommand{\secondcolor}{argon gray} % Secundary color
 
 % Format of classical slides
-\newenvironment{myframe}{\begin{frame}[plain]\startmyframe}{\stopmyframe\end{frame}}
+\newenvironment{myframe}[1][\insertsubsection]{\begin{frame}[plain]\startmyframe{#1}}{\stopmyframe\end{frame}}
 
-\newcommand\startmyframe{
+\newcommand\startmyframe[1]{
   \begin{centering}
     \begin{tikzpicture}
 
@@ -37,10 +37,14 @@
       \coordinate (current) at (\xlmargin ,8.25cm);
 
       % Name of the section
-      \node[anchor = west, color = \maincolor] (sectionname) at (\xlmargin, {\paperheight-.25*\headerheight}) {\textbf{\insertsection}};
+      %\node[anchor = west, color = \maincolor] (sectionname) at (\xlmargin, {\paperheight-.25*\headerheight}) {\textbf{\insertsection}};
 
       % Name of the subsection
-      \node[anchor = west, color = \secondcolor!60] (subsectionname) at (\xlmargin, {\paperheight-.7*\headerheight}) {\textbf{\insertsubsection}};
+      %\node[anchor = west, color = \secondcolor!60] (subsectionname) at (\xlmargin, {\paperheight-.7*\headerheight}) {\textbf{\insertsubsection}};
+
+      % Title of the slide
+      %\node[anchor = west, color = \maincolor] (slidename) at (\xlmargin, {\paperheight-.5*\headerheight}) {\textbf{#1}};
+      \node[anchor = west, color = \maincolor] (slidename) at (\xlmargin, {\paperheight-.5*\headerheight}) {\begin{minipage}{.93\paperwidth}\textbf{#1}\end{minipage}};
 
       % Rectangle on the right
       \draw[color=\secondcolor, fill=\secondcolor] ({\paperwidth-.2cm},\paperheight) rectangle (\paperwidth,{\paperheight-\headerheight});
