@@ -26,9 +26,9 @@
 \usepackage{graphicx}
 
 %Pour pouvoir modifier les énumérations
-\frenchbsetup{StandardLists=true}
+\iflanguage{french}{\frenchbsetup{StandardLists=true}}
 %\usepackage{enumitem}
-\usepackage[ampersand]{easylist}
+%\usepackage[ampersand]{easylist}
 %\setlist[]{leftmargin=*}
 
 %Pour souligner sur plusieurs lignes
