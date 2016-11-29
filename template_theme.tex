@@ -36,12 +36,6 @@
       % Current coordinate
       \coordinate (current) at (\xlmargin ,8.25cm);
 
-      % Name of the section
-      %\node[anchor = west, color = \maincolor] (sectionname) at (\xlmargin, {\paperheight-.25*\headerheight}) {\textbf{\insertsection}};
-
-      % Name of the subsection
-      %\node[anchor = west, color = \secondcolor!60] (subsectionname) at (\xlmargin, {\paperheight-.7*\headerheight}) {\textbf{\insertsubsection}};
-
       % Title of the slide
       %\node[anchor = west, color = \maincolor] (slidename) at (\xlmargin, {\paperheight-.5*\headerheight}) {\textbf{#1}};
       \node[anchor = west, color = \maincolor] (slidename) at (\xlmargin, {\paperheight-.5*\headerheight}) {\begin{minipage}{.93\paperwidth}\textbf{#1}\end{minipage}};
@@ -101,15 +95,21 @@
         \node[anchor = east, color=white] (website) at ({\paperwidth-.9cm},{\paperheight-2.65cm}) {\footnotesize www.argon-consult.com};
 
         % Subtitle
-        \node[anchor = west, color=\maincolor] (subtitle) at (\covermargin,{.35*\paperheight}) { \begin{minipage}{\coverwidth}\small \textbf{#2}\end{minipage} };
+        \node[anchor = west, color=\maincolor] (subtitle) at (\covermargin,{.33*\paperheight}) { \begin{minipage}{\coverwidth}\footnotesize \textbf{#2}\end{minipage} };
         % Title
-        \node[anchor = south west, color=black] (title) at ($(subtitle.north west) + (0,.1cm)$) { \begin{minipage}{\coverwidth}\textbf{#1}\end{minipage} };
-        % Client logo / second logo
-        %\node[anchor = south west]  (client logo) at ($(title.north west) + (0,.1cm)$) {\includegraphics[height=0.8cm]{\clientlogo}};
+        \node[anchor = south west, color=black] (title) at ($(subtitle.north west) + (0,.1cm)$) { \begin{minipage}{\coverwidth}\small\textbf{#1}\end{minipage} };
         % Date
-        \node[anchor = north west, color=\secondcolor!60] (date) at ($(subtitle.south west) - (0,.1cm)$) { \begin{minipage}{\coverwidth}\small \textbf{#3}\end{minipage} };
+        \node[anchor = north west, color=\secondcolor!60] (date) at ($(subtitle.south west) - (0,.1cm)$) { \begin{minipage}{\coverwidth}\footnotesize \textbf{#3}\end{minipage} };
+
+
+        % Client logo / second logo
+        \coordinate (website_SE) at ({\paperwidth-.9cm},{\paperheight-2.9cm});
+        \coordinate (title_SE) at (title.north east);
+        \coordinate (client_logo_E) at ($(website_SE)!.5!(title_SE)$);
+        \node[anchor = east]  (client logo) at (client_logo_E) {\includegraphics[height=0.6cm]{\clientlogo}};
+
         % Authors
-        \node[anchor = south, color=\secondcolor!60] (authors) at ({.5*\paperwidth},.5cm) {\textbf{#4}};
+        \node[anchor = south, color=\secondcolor!60] (authors) at ({.5*\paperwidth},.5cm) {{\footnotesize \textbf{#4}}};
 
         % Rectangle at the bottom
         \draw[color=\maincolor, fill=\maincolor] (0,0) rectangle (\paperwidth,.1cm);
@@ -164,7 +164,7 @@
         \clip (0,0) rectangle (\paperwidth,\paperheight);
 
         % Headers
-        \node[anchor = west, color = \maincolor] (outline) at (\xlmargin, {\paperheight-.5*\headerheight}) {\textbf{\iflanguage{english}{Outline}{\iflanguage{french}{Sommaire}}}};
+        \node[anchor = west, color = \maincolor] (outline) at (\xlmargin, {\paperheight-.5*\headerheight}) {\textbf{\outline}};
 
         % Separator from the table of content
         \draw[color=\maincolor] (0,{\paperheight-\headerheight}) -- (\paperwidth,{\paperheight-\headerheight});

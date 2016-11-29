@@ -19,6 +19,9 @@
   }%
 }
 
+% Outline of the presentation
+\multilangnewcommand{\outline}{Outline}{Sommaire}
+
 %Pour pouvoir mettre des images
 \usepackage{graphicx}
 
