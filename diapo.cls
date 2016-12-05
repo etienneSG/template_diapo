@@ -6,9 +6,9 @@
 \setbeamersize{text margin right = 0pt}
 
 %La base (mettre english si rapport de stage en anglais)
-\usepackage[utf8]{inputenc}
+\usepackage[utf8]{luainputenc}
 \usepackage[T1]{fontenc}
-\usepackage[francais]{babel}
+\usepackage[english]{babel}
 
 % Pour définir une commande en plusieurs langues
 \newcommand{\multilangnewcommand}[3]{%
@@ -90,9 +90,24 @@
 \usetikzlibrary{calc,arrows,automata}
 \usetikzlibrary{decorations,decorations.pathreplacing}
 \usetikzlibrary{patterns}
+\usepackage{tikzscale}
+
+% Gnuplot picture
+\usepackage{latexsym, keyval, ifthen, moreverb, gnuplot-lua-tikz}
+\usepackage{gnuplottex}
 
 % Symbole euro
 \usepackage{eurosym}
+
+% Pour barrer du text (oblique)
+\usepackage{cancel}
+\newcommand\Ccancel[2][black]{\renewcommand\CancelColor{\color{#1}}\cancel{#2}}
+
+% Raccourci utile
+\newcommand{\red}[1]{\textcolor{red}{#1}} % texte en rouge
+\newcommand{\tbc}{\red{\texttt{To be completed}}}
+\newcommand{\todo}[1]{\red{\texttt{(TO DO: #1)}}}
+\def\ds{\displaystyle}
 
 % Template beamer
 \input{template_theme.tex}

@@ -5,14 +5,19 @@ CLASS_NAME=diapo
 
 # Paths of sections and images
 IMG_PATH=images
+GNUPLOT_PATH=gnuplot_script
 
 all: pdf clean change_name
 
 IMG_LIST=$(wildcard $(IMG_PATH)/*)
+GNUPLOT_LIST=$(wildcard $(GNUPLOT_PATH)/*.gp)
 
-pdf: $(TEX_NAME).tex $(CLASS_NAME).cls math_command.tex template_theme.tex $(IMG_LIST)
-	pdflatex $(TEX_NAME).tex
-	pdflatex $(TEX_NAME).tex
+gnuplot_images: $(GNUPLOT_LIST)
+	if [ "$(GNUPLOT_LIST)" != "" ]; then gnuplot $(GNUPLOT_LIST); fi
+
+pdf: gnuplot_images $(TEX_NAME).tex $(CLASS_NAME).cls math_command.tex template_theme.tex $(IMG_LIST)
+	lualatex $(TEX_NAME).tex
+	lualatex $(TEX_NAME).tex
 
 change_name:
 	@mv $(TEX_NAME).pdf $(PDF_NAME).pdf
