@@ -19,6 +19,8 @@
 \newcommand{\headerheight}{0.95cm} % Header height
 \newcommand{\footerheight}{0.7cm}  % Footer height
 
+\newcommand{\blockwidth}{\paperwidth-.2cm-4pt} % Default width of text block
+
 % Color theme
 \newcommand{\maincolor}{argon orange} % Main color
 \newcommand{\secondcolor}{argon gray} % Secundary color
@@ -137,7 +139,7 @@
 % #4 tikz options
 % #5 text
 \newcommandx{\mytext}[5][1=current,2=box,usedefault]{
-  \node[anchor = north west, #4] (#2) at (#1) {
+  \node[anchor = north west, inner sep = 2pt, #4] (#2) at (#1) {
     \begin{minipage}{#3}
       #5
     \end{minipage}

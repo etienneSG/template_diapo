@@ -22,6 +22,9 @@
 % To define a command with multiple optional arguments
 \usepackage{xargs}
 
+% To include file
+\usepackage{filecontents}
+
 % Outline of the presentation
 \multilangnewcommand{\outline}{Outline}{Sommaire}
 
