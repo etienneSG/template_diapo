@@ -13,13 +13,18 @@
 \newcommand{\imagetheme}{images/Argon_theme.jpg}
 
 % Margin
-\newcommand{\xlmargin}{0.02\paperwidth}  % Left margin
-\newcommand{\xrmargin}{0.98\paperwidth}  % Right margin
+\newlength{\xlmargin}
+\setlength{\xlmargin}{0.02\paperwidth}  % Left margin
+\newlength{\xrmargin}
+\setlength{\xrmargin}{0.98\paperwidth}  % Right margin
 
-\newcommand{\headerheight}{0.95cm} % Header height
-\newcommand{\footerheight}{0.7cm}  % Footer height
+\newlength{\headerheight}
+\setlength{\headerheight}{0.95cm} % Header height
+\newlength{\footerheight}
+\setlength{\footerheight}{0.7cm}  % Footer height
 
-\newcommand{\blockwidth}{\paperwidth-.2cm-4pt} % Default width of text block
+\newlength{\blockwidth}
+\setlength{\blockwidth}{\paperwidth-.2cm-4pt} % Default width of text block
 
 % Color theme
 \newcommand{\maincolor}{argon orange} % Main color
@@ -209,6 +214,9 @@
 \setbeamertemplate{itemize item}{\textcolor{\maincolor}{$\bullet$}}
 \setbeamertemplate{itemize subitem}{\textcolor{\secondcolor!60}{{\scriptsize$\blacktriangleright$}}}
 \setbeamertemplate{itemize subsubitem}{\color{black} \scriptsize $\bullet$}
+\settowidth{\leftmargini}{1pt}
+\settowidth{\leftmarginii}{1pt}
+\settowidth{\leftmarginiii}{1pt}
 
 
 %%% Local Variables:
