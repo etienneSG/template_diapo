@@ -19,6 +19,9 @@
   }%
 }
 
+% To define a command with multiple optional arguments
+\usepackage{xargs}
+
 % Outline of the presentation
 \multilangnewcommand{\outline}{Outline}{Sommaire}
 
@@ -53,7 +56,19 @@
 \usepackage{listings}
 
 % Pour du pseudo-code
-\usepackage[french]{algorithm2e}
+\iflanguage{english}{%
+  \usepackage[english,noend]{algorithm2e}%
+  \SetKw{And}{and}%
+  \SetKw{From}{from}%
+  \SetKw{To}{to}%
+}{%
+  \iflanguage{french}{%
+    \usepackage[french,noend]{algorithm2e}%
+    \SetKw{And}{et}%
+    \SetKw{From}{de}%
+    \SetKw{To}{\`{a}}%
+  }{}%
+}
 \setlength{\algomargin}{0em}
 
 %Pour les tableaux
@@ -91,6 +106,7 @@
 \usetikzlibrary{decorations,decorations.pathreplacing}
 \usetikzlibrary{patterns}
 \usepackage{tikzscale}
+\usepackage{pgfplots}
 
 % Gnuplot picture
 \usepackage{latexsym, keyval, ifthen, moreverb, gnuplot-lua-tikz}

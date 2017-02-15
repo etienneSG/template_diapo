@@ -314,7 +314,7 @@
 \newcommand{\iid}{\text{i.i.d.}}                            % ``i.i.d.''
 \newcommand{\as}{\text{a.s.}}                               % ``a.s.''
 \newcommand{\Pps}{\text{$\prbt$-}\as}                       % ``P-a.s.''
-\multilangnewcommand{\st}{\mathrm{s.t.}}{\mathrm{s.c.}}     % ``s.c.''
+\multilangnewcommand{\st}{\text{s.t.}}{\text{s.c.}}         % ``s.c.''
 
 
 %%%%% Grilles
@@ -370,9 +370,10 @@
 \newcommand\demandPR[2]{d_{#1}^{#2}}                % Demand in reference #2 at period #1
 \newcommand\aleaDemandPR[2]{\va{d}_{#1}^{#2}}       % Stochastic demand in reference #2 at period #1
 \newcommand\holdingCostPR[2]{h_{#1}^{#2}}           % holding cost of reference #2 at the end of period #1
-\newcommand\capaP[1]{C_{#1}}                        % Capacity of the assembly line at period #1
-\newcommand\capaPR[2]{C_{#1}^{#2}}                  % Capacity of the assembly line at period #1 for the reference #2
+\newcommand\capaP[1]{c_{#1}}                        % Capacity of the assembly line at period #1
+\newcommand\capaPR[2]{c_{#1}^{#2}}                  % Capacity of the assembly line at period #1 for the reference #2
 \newcommand\occupationRatePR[2]{v_{#1}^{#2}}        % Capacity needed for assembly line to produce one unit of reference #2 at period #1
+                                                    % = throughput of the line
 \newcommand\nbChange{N}                             % Total number of changes of the line
 \newcommand\nbChangeP[1]{N_{#1}}                    % Number of change per during period #1
 \newcommand\isProducedPR[2]{x_{#1}^{#2}}            % 1 if reference #2 is producted at period #1 and 0 otherwise
@@ -383,14 +384,6 @@
 \newcommand\aleaStockPR[2]{\va{s}_{#1}^{#2}}        % Stock of reference #2 at the end of period #1 (random version)
 \newcommand\stockSecuR[1]{s_{\mathrm{min}}^{#1}}    % Security stock of the reference #1
 
-% Stochastic notations
-\newcommand\backOrderPR[2]{b_{#1}^{#2}}             % Back ordered when negative stocks are authorized
-\newcommand\aleaBackOrderPR[2]{\va{b}_{#1}^{#2}}    % Back ordered when negative stocks are authorized
-\newcommand\forwardOrderPR[2]{\tilde{s}_{#1}^{#2}}          % Forward ordered when negative stocks are authorized
-\newcommand\aleaForwardOrderPR[2]{\va{\tilde{s}}_{#1}^{#2}} % Forward ordered when negative stocks are authorized
-\newcommand\penalizePR[2]{\gamma_{#1}^{#2}}         % penalization factor
-
-
 % Set of possible patterns of references that can be produced at period #2
 % If #1 is nonempty, it designed the subset of possible pattern containing the references #1
 \newcommand\RefPattern[2][]{\cP_{#2}^{#1}}
@@ -398,3 +391,22 @@
 % Boolean variable. 1 if the pattern #1 is chosen at period #2 and 0 otherwise
 \newcommand\PatternChoice[2]{y_{#1,#2}}
 
+
+
+% Modele PDP
+\newcommand\horizon{T}              % Number of periods
+\newcommand\demand{d}               % Demand in reference #2 at period #1
+\newcommand\holding{h}              % holding cost of reference #2 at the end of period #1
+\newcommand\capacity{c}             % Capacity of the assembly line
+\newcommand\rate{v}                 % Capacity needed for assembly line to produce one unit of reference
+                                    % = throughput of the line
+\newcommand\nbsetups{N}             % Total number of setups of the line
+\newcommand\setup{x}                % 1 if reference is producted at period and 0 otherwise
+\newcommand\quantity{q}             % Quantity of reference produced at period
+\newcommand\inventory{s}            % INventory of reference at the end of period (may be negative)
+\newcommand\backlog{b}              % Backlog quantity of reference at end of period
+\newcommand\excess{\tilde{s}}       % Excess of inventory of reference at the end of period
+\newcommand\safety{s_{\mathrm{min}}}% Safety stock of the reference
+\newcommand\delay{\gamma}           % Penalization of the backlog inventory
+\newcommand\lag{\tau}               % Number of periods for which decisions are fixed
+\newcommand\scenarios{\Omega}       % Set of scenarios

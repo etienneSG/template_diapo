@@ -34,7 +34,7 @@
       \clip (0,0) rectangle (\paperwidth,\paperheight);
 
       % Current coordinate
-      \coordinate (current) at (\xlmargin ,8.25cm);
+      \coordinate (current) at (0. ,8.25cm);
 
       % Title of the slide
       %\node[anchor = west, color = \maincolor] (slidename) at (\xlmargin, {\paperheight-.5*\headerheight}) {\textbf{#1}};
@@ -132,16 +132,17 @@
 
 % Box to place latex frames
 % #1 position, current by default
-% #2 width
-% #3 tikz options
-% #4 text
-\newcommand{\mytext}[4][current]{
-  \node[anchor = north west, #3] (box) at (#1) {
-    \begin{minipage}{#2}
-      #4
+% #2 name of the box
+% #3 width
+% #4 tikz options
+% #5 text
+\newcommandx{\mytext}[5][1=current,2=box,usedefault]{
+  \node[anchor = north west, #4] (#2) at (#1) {
+    \begin{minipage}{#3}
+      #5
     \end{minipage}
   };
-  \coordinate (current) at (box.south west);
+  \coordinate (current) at (#2.south west);
 }
 
 
@@ -205,6 +206,7 @@
 % Define default itemization
 \setbeamertemplate{itemize item}{\textcolor{\maincolor}{$\bullet$}}
 \setbeamertemplate{itemize subitem}{\textcolor{\secondcolor!60}{{\scriptsize$\blacktriangleright$}}}
+\setbeamertemplate{itemize subsubitem}{\color{black} \scriptsize $\bullet$}
 
 
 %%% Local Variables:

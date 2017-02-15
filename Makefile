@@ -2,38 +2,24 @@
 PDF_NAME=my_diapo
 TEX_NAME=template_diapo
 CLASS_NAME=diapo
+OUT_DIR=auxiliary_files
 
 # Paths of sections and images
 IMG_PATH=images
-GNUPLOT_PATH=gnuplot_script
 
-all: pdf clean change_name
+all: pdf change_name clean
 
 IMG_LIST=$(wildcard $(IMG_PATH)/*)
-GNUPLOT_LIST=$(wildcard $(GNUPLOT_PATH)/*.gp)
 
-gnuplot_images: $(GNUPLOT_LIST)
-	if [ "$(GNUPLOT_LIST)" != "" ]; then gnuplot $(GNUPLOT_LIST); fi
-
-pdf: gnuplot_images $(TEX_NAME).tex $(CLASS_NAME).cls math_command.tex template_theme.tex $(IMG_LIST)
-	lualatex $(TEX_NAME).tex
-	lualatex $(TEX_NAME).tex
+pdf: $(TEX_NAME).tex $(CLASS_NAME).cls math_command.tex template_theme.tex $(IMG_LIST)
+	@mkdir -p $(OUT_DIR)
+	lualatex -output-directory=$(OUT_DIR) $(TEX_NAME).tex
+	lualatex -output-directory=$(OUT_DIR) $(TEX_NAME).tex
 
 change_name:
-	@mv $(TEX_NAME).pdf $(PDF_NAME).pdf
+	@mv $(OUT_DIR)/$(TEX_NAME).pdf $(PDF_NAME).pdf
 
 clean:
-	@find . -name '*~' -exec rm '{}' \; 
-	@find . -name '*.aux' -exec rm '{}' \; 
-	@find . -name '*.bak' -exec rm '{}' \; 
-	@find . -name '*.bbl' -exec rm '{}' \; 
-	@find . -name '*.blg' -exec rm '{}' \; 
-	@find . -name '*.lof' -exec rm '{}' \; 
-	@find . -name '*.log' -exec rm '{}' \; 
-	@find . -name '*.lot' -exec rm '{}' \;
-	@find . -name '*.nav' -exec rm '{}' \;  
-	@find . -name '*.out' -exec rm '{}' \; 
-	@find . -name '*.snm' -exec rm '{}' \; 
-	@find . -name '*.toc' -exec rm '{}' \;
-
+	@find . -name '*~' -exec rm '{}' \;
+	@rm -r $(OUT_DIR)
 

@@ -43,10 +43,22 @@
 
 \begin{myframe}[One slide with a specific title]
 
-  \mytext{0.93\paperwidth}{anchor = north west,
-    inner sep = 2pt
+  \mytext[][my_list]{.45\paperwidth}{anchor = north west,
+    inner sep = 2pt, rectangle, draw
   }{
     And very few text.
+  }
+
+  \mytext[my_list.south east][]{.45\paperwidth}{anchor = north west,
+    inner sep = 2pt, rectangle, draw
+  }{
+    An other block.
+  }
+
+  \mytext[box.south west][]{.45\paperwidth}{anchor = north,
+    inner sep = 2pt, rectangle, draw
+  }{
+    The last block.
   }
 
 \end{myframe}
