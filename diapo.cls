@@ -6,9 +6,9 @@
 \setbeamersize{text margin right = 0pt}
 
 %La base (mettre english si rapport de stage en anglais)
-\usepackage[utf8]{luainputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[english]{babel}
+\usepackage[frenchb]{babel}
 
 % Pour définir une commande en plusieurs langues
 \newcommand{\multilangnewcommand}[3]{%
@@ -47,6 +47,13 @@
 \usepackage[version=3]{mhchem} %Chimie
 \usepackage{siunitx}  %Utilisation des unités SI
 
+%Pour dessiner
+\usepackage{xcolor,colortbl}
+\definecolor{bottle green}{RGB}{9, 106, 9}
+\definecolor{kaki}{rgb}{.5,.5,0}
+\definecolor{argon orange}{RGB}{237, 128, 0}
+\definecolor{argon gray}{RGB}{83, 86, 90}
+
 %Pour encadrer
 \usepackage{fancybox}
 
@@ -77,6 +84,7 @@
 %Pour les tableaux
 \usepackage{array} %Centrer les tableaux
 \usepackage{multirow} %multiligne et multicolonne
+\usepackage{rotating} %Rotate header column
 \usepackage{arydshln} %ligne en pointillé
 \usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} %Nom des tables personnalisés
 \usepackage{booktabs} %Tables avec des lignes marquées
@@ -87,7 +95,7 @@
 %On définit l'envirronnement propre au théorème
 \theoremstyle{plain} % default (corps en italique)
 \newtheorem{thm}{Théorème}
-\newtheorem{lem}[thm]{Lemme}
+%\newtheorem{lem}[thm]{Lemme}
 \newtheorem{prop}[thm]{Proposition}
 \theoremstyle{definition} % (corps en texte normal)
 \newtheorem{conj}{Conjecture}
@@ -97,19 +105,13 @@
 \usepackage{varwidth}
 
 %Pour dessiner
-\usepackage{xcolor}
-\definecolor{bottle green}{RGB}{9, 106, 9}
-\definecolor{kaki}{rgb}{.5,.5,0}
-\definecolor{argon orange}{RGB}{237, 128, 0}
-\definecolor{argon gray}{RGB}{83, 86, 90}
-
-%Pour dessiner
 \usepackage{tikz}
 \usetikzlibrary{calc,arrows,automata}
 \usetikzlibrary{decorations,decorations.pathreplacing}
 \usetikzlibrary{patterns}
 \usepackage{tikzscale}
 \usepackage{pgfplots}
+\iflanguage{french}{\tikzset{every picture/.prefix style={execute at begin picture=\shorthandoff{;}}}}
 
 % Gnuplot picture
 \usepackage{latexsym, keyval, ifthen, moreverb, gnuplot-lua-tikz}
@@ -128,9 +130,12 @@
 \newcommand{\todo}[1]{\red{\texttt{(TO DO: #1)}}}
 \def\ds{\displaystyle}
 
+% correct text circled
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
+
 % Template beamer
 \input{template_theme.tex}
 
-% Mathematic sommand
+% Mathematic command
 \input{math_command.tex}
 

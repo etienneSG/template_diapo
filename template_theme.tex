@@ -9,7 +9,7 @@
 % Second logo / Client Logo
 \newcommand{\clientlogo}{images/logo_ponts.png}
 
-% Image themme
+% Image theme
 \newcommand{\imagetheme}{images/Argon_theme.jpg}
 
 % Margin
@@ -145,6 +145,7 @@
 % #5 text
 \newcommandx{\mytext}[5][1=current,2=box,usedefault]{
   \node[anchor = north west, inner sep = 2pt, #4] (#2) at (#1) {
+    \small
     \begin{minipage}{#3}
       #5
     \end{minipage}
@@ -155,15 +156,22 @@
 
 % Table of content style
 \defbeamertemplate{section in toc}{toc style}{%
-  \leavevmode\leftskip=0.4cm%
+  \vspace{.4cm}\leavevmode\leftskip=2pt%
   \llap{\textcolor{\maincolor}{$\bullet$}}%
   \kern1.5ex\textcolor{\secondcolor}{\inserttocsection}\par
 }
 \setbeamertemplate{section in toc}[toc style]
 
+\defbeamertemplate{subsection in toc}{toc style}{%
+  \leavevmode\leftskip=0.4cm%
+  \llap{\textcolor{\secondcolor!60}{{\scriptsize$\blacktriangleright$}}}%
+  \kern1.5ex\textcolor{\secondcolor}{\inserttocsubsection}\par
+}
+\setbeamertemplate{subsection in toc}[toc style]
+
+
 % Pop up the table of contents at the beginning of each section:
-\AtBeginSection[]
-{
+\newcommand\tocframe{
   \begin{frame}[plain]
     \begin{centering}
       \begin{tikzpicture}
@@ -180,10 +188,9 @@
         % Table of contents
         \mytext[\xlmargin,{\paperheight-2*\headerheight}]{.5\paperwidth}{anchor = north west, inner sep = 2pt
         }{
-          \addtocounter{framenumber}{-1}
-          \setcounter{tocdepth}{1}
-          \renewcommand{\baselinestretch}{1.75}\normalsize
-          \tableofcontents[currentsection]
+          \setcounter{tocdepth}{2}
+          \renewcommand{\baselinestretch}{1.}\small
+          \tableofcontents[currentsection,currentsubsection]
           \renewcommand{\baselinestretch}{1.}\normalsize
         }
 
@@ -207,6 +214,16 @@
   \end{frame}
 }
 
+\AtBeginSection[]
+{
+  \tocframe
+}
+
+\AtBeginSubsection[]
+{
+  \tocframe
+}
+
 % Remove navigation symbols
 \setbeamertemplate{navigation symbols}{}
 
@@ -214,10 +231,34 @@
 \setbeamertemplate{itemize item}{\textcolor{\maincolor}{$\bullet$}}
 \setbeamertemplate{itemize subitem}{\textcolor{\secondcolor!60}{{\scriptsize$\blacktriangleright$}}}
 \setbeamertemplate{itemize subsubitem}{\color{black} \scriptsize $\bullet$}
+\setbeamercolor*{enumerate item}{fg=\maincolor}
+\setbeamercolor*{enumerate subitem}{fg=\secondcolor!60}
+\setbeamercolor*{enumerate subsubitem}{fg=black}
 \settowidth{\leftmargini}{1pt}
 \settowidth{\leftmarginii}{1pt}
 \settowidth{\leftmarginiii}{1pt}
 
+
+\setbeamercolor{bibliography entry author}{fg=argon orange}
+%\setbeamercolor{bibliography entry title}{fg=blue} 
+\setbeamercolor{bibliography entry location}{fg=argon gray!75} 
+%\setbeamercolor{bibliography entry note}{fg=cyan}
+
+
+\makeatletter
+\def\th@mystyle{%
+    \normalfont % body font
+    \setbeamercolor{block title example}{bg=\maincolor,fg=white}
+    \setbeamercolor{block body example}{bg=\maincolor!10,fg=black}
+    \def\inserttheoremblockenv{exampleblock}
+  }
+\makeatother
+\theoremstyle{mystyle}
+\newtheorem*{lem}{Lemma}
+
+
+% Kicker at the bottom of the template
+\newcommand{\kicker}[1]{\mytext[\xlmargin,{\footerheight+.2cm}]{.93\paperwidth}{anchor = south west, inner sep = 3pt, fill=\secondcolor!25}{\begin{center}#1\end{center}}}
 
 %%% Local Variables:
 %%% mode: latex

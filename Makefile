@@ -13,8 +13,8 @@ IMG_LIST=$(wildcard $(IMG_PATH)/*)
 
 pdf: $(TEX_NAME).tex $(CLASS_NAME).cls math_command.tex template_theme.tex $(IMG_LIST)
 	@mkdir -p $(OUT_DIR)
-	lualatex -output-directory=$(OUT_DIR) $(TEX_NAME).tex
-	lualatex -output-directory=$(OUT_DIR) $(TEX_NAME).tex
+	pdflatex -output-directory=$(OUT_DIR) $(TEX_NAME).tex
+	pdflatex -output-directory=$(OUT_DIR) $(TEX_NAME).tex
 
 change_name:
 	@mv $(OUT_DIR)/$(TEX_NAME).pdf $(PDF_NAME).pdf
